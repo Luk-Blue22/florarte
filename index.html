@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<style>
+@layer base{
+  html,body{margin:0;padding:0;width:100vw;min-height:100%;}
+  body{overscroll-behavior:none;}
+  .pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}
+  .pt-safe{padding-top:env(safe-area-inset-top,0px);}
+  main>:first-child{margin-top:0!important;}
+  main>:last-child{margin-bottom:0!important;}
+}
+::-webkit-scrollbar{display:none;}
+.site-desktop{display:none;}
+.site-mobile{display:block;}
+@media (min-width:768px){
+  .site-desktop{display:block;}
+  .site-mobile{display:none;}
+}
+</style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-tertiary-container": "#b0e0c4",
+        "surface-dim": "#e3d7da",
+        "on-secondary": "#ffffff",
+        "on-error-container": "#93000a",
+        "tertiary-fixed-dim": "#a2d1b5",
+        "surface-container-lowest": "#ffffff",
+        "background": "#fff8f8",
+        "on-tertiary-fixed": "#002113",
+        "surface-container-high": "#f1e5e8",
+        "error-container": "#ffdad6",
+        "on-background": "#201a1c",
+        "error": "#ba1a1a",
+        "surface-variant": "#ece0e2",
+        "surface-container-highest": "#ece0e2",
+        "on-primary-container": "#ffc7d2",
+        "outline": "#8d6f75",
+        "primary-fixed-dim": "#ffb1c2",
+        "tertiary-container": "#39654e",
+        "secondary-fixed": "#f4dce4",
+        "tertiary": "#214d38",
+        "surface-container-low": "#fdf1f3",
+        "on-primary-fixed-variant": "#8f003f",
+        "on-secondary-fixed": "#25181e",
+        "primary-fixed": "#ffd9df",
+        "outline-variant": "#e1bec4",
+        "primary": "#8c003e",
+        "on-error": "#ffffff",
+        "secondary": "#a21e56",
+        "surface-container": "#f7ebed",
+        "inverse-primary": "#ffb1c2",
+        "surface": "#fff8f8",
+        "primary-container": "#b80053",
+        "on-primary": "#ffffff",
+        "secondary-container": "#f4dce4",
+        "on-surface": "#201a1c",
+        "on-tertiary": "#ffffff",
+        "surface-bright": "#fff8f8",
+        "on-tertiary-fixed-variant": "#234f3a",
+        "secondary-fixed-dim": "#d7c1c8",
+        "on-secondary-container": "#716066",
+        "surface-tint": "#bb0455",
+        "tertiary-fixed": "#bdeed0",
+        "on-secondary-fixed-variant": "#524249",
+        "on-surface-variant": "#5a4045",
+        "inverse-on-surface": "#faeef0",
+        "inverse-surface": "#352f31",
+        "on-primary-fixed": "#3f0018"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "space-xs": "0.25rem",
+        "space-sm": "0.5rem",
+        "gutter-mobile": "1rem",
+        "margin": "3rem",
+        "gutter": "1.5rem",
+        "space-md": "1rem",
+        "space-lg": "1.5rem",
+        "margin-mobile": "1.25rem",
+        "space-xl": "2.5rem"
+      },
+      "fontFamily": {
+        "headline-sm": [ "Playfair Display" ],
+        "body-lg": [ "Plus Jakarta Sans" ],
+        "headline-lg-mobile": [ "Playfair Display" ],
+        "body-md": [ "Plus Jakarta Sans" ],
+        "display-lg-mobile": [ "Playfair Display" ],
+        "label-sm": [ "Plus Jakarta Sans" ],
+        "headline-lg": [ "Playfair Display" ],
+        "display-lg": [ "Playfair Display" ],
+        "title-md": [ "Plus Jakarta Sans" ],
+        "headline-md": [ "Playfair Display" ],
+        "body-sm": [ "Plus Jakarta Sans" ],
+        "label-lg": [ "Plus Jakarta Sans" ],
+        "title-sm": [ "Plus Jakarta Sans" ],
+        "label-md": [ "Plus Jakarta Sans" ]
+      },
+      "fontSize": {
+        "headline-sm": [ "22px", { "lineHeight": "30px", "fontWeight": "600" } ],
+        "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ],
+        "headline-lg-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "0em", "fontWeight": "400" } ],
+        "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ],
+        "display-lg-mobile": [ "38px", { "lineHeight": "46px", "letterSpacing": "-0.01em", "fontWeight": "400" } ],
+        "label-sm": [ "11px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "700" } ],
+        "headline-lg": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" } ],
+        "display-lg": [ "56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" } ],
+        "title-md": [ "18px", { "lineHeight": "26px", "fontWeight": "600" } ],
+        "headline-md": [ "28px", { "lineHeight": "36px", "fontWeight": "500" } ],
+        "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ],
+        "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.03em", "fontWeight": "600" } ],
+        "title-sm": [ "16px", { "lineHeight": "24px", "fontWeight": "600" } ],
+        "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" } ]
+      }
+    }
+  }
+};</script>
+</head>
+<body>
+<div class="site-desktop bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-fixed selection:text-primary">
+<header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl border-b border-outline-variant/40 shadow-[0_1px_12px_rgba(184,0,83,0.05)]"><div class="h-20 max-w-[1280px] mx-auto px-gutter flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-md"><a class="flex items-center gap-space-sm" data-path="inicio" href="#"><img alt="Florarte Estudio Floral" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqiCj3hF-yHCD4XR9M-2Eqr0Idigx6EHFbHhMgBsuL8Fq5rUmNYr1xwc7p2H9tQJJvkvWnv4zTao82RhBVyHyy1r5bRDu9ZMVqPTCv72Oro0umzeJuTVeIvFx1BbpwHtXydIiwYkP45c_P2dbjIjBO-17w10j3hxvk0iWKW39QvPhVzYbWxbs8QWPLMiwK8Vf8gZqjhK4MkEV7wvBzMohP61St5HI0yCAlUWKRqzeWsbdPxXH_mXKUew0dtvXXZPIxBaA"/></a><div class="hidden xl:flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-fixed text-primary font-label-sm text-label-sm border border-outline-variant/50"><span class="material-symbols-outlined text-[15px] text-primary fill-current" style="font-variation-settings: 'FILL' 1;">star</span><span class="font-bold">★ 5.0 (85 reseñas en Google)</span></div></div><nav class="hidden lg:flex items-center gap-space-lg" data-active-classes="text-primary font-semibold border-b border-primary"><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-1" data-path="sobre-nosotros" href="#sobre-nosotros">Sobre nosotros</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-1" data-path="galeria" href="#galeria">Galería</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-1" data-path="resenas" href="#resenas">Reseñas</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-1" data-path="horario" href="#horario">Horario</a><a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors py-1" data-path="ubicacion" href="#ubicacion">Ubicación</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-all font-label-lg text-label-lg shadow-[0_8px_20px_-4px_rgba(184,0,83,0.3)]" href="https://wa.me/526673504860" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Pedir por WhatsApp</span></a><div class="w-8 h-8 rounded-full bg-primary-fixed text-primary flex items-center justify-center border border-outline-variant/60"><span class="material-symbols-outlined text-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full">
+<!-- SECCIÓN 1: HERO EDITORIAL -->
+<section class="w-full relative overflow-hidden py-space-xl lg:py-28 bg-gradient-to-b from-[#fff0f3] to-surface" id="inicio">
+<div class="max-w-[1280px] mx-auto px-gutter relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Columna Izquierda: Mensaje y Acciones -->
+<div class="lg:col-span-6 space-y-space-lg flex flex-col justify-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-fixed text-primary w-fit border border-outline-variant/50">
+<span class="material-symbols-outlined text-[17px] text-primary" style="font-variation-settings: 'FILL' 1;">local_florist</span>
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Florería Boutique en Aguaruto, Culiacán</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary leading-[1.12] tracking-tight">
+            Creaciones florales con alma y elegancia natural
+          </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+            Composiciones botánicas creadas a mano para celebrar instantes auténticos. Experiencias florales llenas de armonía, textura y distinción.
+          </p>
+<div class="flex flex-wrap items-center gap-space-md pt-2">
+<a class="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-all font-label-lg text-label-lg shadow-[0_12px_28px_-6px_rgba(184,0,83,0.35)]" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20gustar%C3%ADa%20solicitar%20un%20arreglo%20floral" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[20px]">chat</span>
+<span class="">Pedir por WhatsApp</span>
+</a>
+<a class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-surface-container hover:bg-surface-container-high text-primary border border-outline-variant/60 transition-colors font-label-lg text-label-lg" href="#galeria">
+<span class="material-symbols-outlined text-[19px]">photo_library</span>
+<span class="">Ver galería</span>
+</a>
+</div>
+<div class="flex items-center gap-space-md pt-4">
+<div class="flex items-center text-amber-500">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant font-medium">Calificación perfecta de 5.0 basada en 85 clientes satisfechos</span>
+</div>
+</div>
+<!-- Columna Derecha: Fotografía Principal Enmarcada -->
+<div class="lg:col-span-6 relative flex justify-center">
+<div class="relative w-full max-w-[500px] aspect-[4/5] rounded-[2rem] overflow-hidden bg-surface-container-high shadow-[0_24px_50px_-12px_rgba(184,0,83,0.22)] border-4 border-white">
+<img alt="Caja Cilíndrica Sombrerera Florarte" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGqtD660Pvp7ykU9_Kf26daQfYdgRbcMz6xnHFtab-6583YmGELt9rMgkKPl9XZoIpFThswv54II2AkuIF4UIbghePkxxHlBfAbVDv1UPN9q4fmGWnArlVmQeI_uP5cGuEgAuK_ex9DqVYKrbyoCa-Cyt4UcUdt8mvSFEpd-i63tzJF-i-wFLEHitNPajbVf3cRMFwW04ZVX5CfTLJxzLUlaOsGsmr06bbmmSorM0nJV0SWRrwhz4GnxKQ4ArJf6uwU-s"/>
+</div>
+<!-- Tarjeta Flotante -->
+<div class="absolute -bottom-6 -left-2 sm:left-4 bg-surface-container-lowest p-5 rounded-2xl shadow-[0_16px_36px_-6px_rgba(140,0,62,0.18)] flex items-center gap-4 max-w-[310px] border border-outline-variant/50">
+<div class="w-12 h-12 rounded-full bg-secondary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[24px]" style="font-variation-settings: 'FILL' 1;">local_florist</span>
+</div>
+<div>
+<div class="flex items-center gap-1 text-amber-500 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-on-surface">5.0</span>
+</div>
+<p class="font-title-md text-[15px] font-semibold text-primary leading-snug">Excelencia en cada entrega</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Culiacán y Aguaruto</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 2: SOBRE NOSOTROS (Exactamente 2 líneas) -->
+<section class="w-full py-space-xl bg-surface-container-low border-y border-outline-variant/30" id="sobre-nosotros">
+<div class="max-w-[1280px] mx-auto px-gutter">
+<div class="max-w-3xl mx-auto text-center space-y-3">
+<h2 class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] font-bold">SOBRE NOSOTROS</h2>
+<p class="font-headline-md text-headline-md text-primary leading-relaxed font-normal">
+          Diseñamos arreglos florales artesanales y exclusivos en Culiacán, cuidando cada detalle con flores frescas seleccionadas para crear momentos inolvidables.
+        </p>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 3: GALERÍA FLORAL VISUAL -->
+<section class="w-full py-space-xl lg:py-28 bg-surface" id="galeria">
+<div class="max-w-[1280px] mx-auto px-gutter">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl gap-4">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] block mb-2 font-bold">Catálogo Artesanal</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Galería de Arreglos Florales</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Inspiración botánica y composiciones florales frescas del día</p>
+</div>
+<a class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-secondary-fixed hover:bg-primary hover:text-white text-primary font-label-lg text-label-lg transition-all border border-outline-variant/40" href="https://wa.me/526673504860?text=Hola,%20quisiera%20cotizar%20un%20ramo%20personalizado" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">palette</span>
+<span class="">Cotizar ramo personalizado por WhatsApp</span>
+</a>
+</div>
+<!-- Cuadrícula espaciosa de 4 grandes fotografías reales -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg lg:gap-8">
+<!-- Item 1: Caja Sombrerera Florarte -->
+<div class="group rounded-2xl bg-surface-container-lowest overflow-hidden shadow-[0_4px_20px_rgba(140,0,62,0.06)] hover:shadow-[0_16px_36px_-10px_rgba(184,0,83,0.2)] transition-all duration-300 border border-outline-variant/40">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img alt="Caja Sombrerera Florarte con rosas y flores de estudio" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK52wvQXvvRP0FOdA9XrfYBqEhwmpPvgPSiaHAs7OM1qqY3H1N_O5Nw6dyu9Ds0Yh652aNhVuop-YrWZXtQO7Iy7Szas6Z0qg4Ax4fQb19_w24inSGGDpXPcDBu2dETp_lvq_hqrMzizGLeDBNllvZRx5ltzj15NaB6ylRtO3_Er_W_2wtCz10ZMvTgJ02ZLqdXYXnfd0yTaLxcuPxT1c3MT5t2Atsoal4V4z1HHfp693wD1hORmcgF4DX-vEhpshNDmU"/>
+<span class="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold shadow-sm">Exclusivo Boutique</span>
+</div>
+<div class="p-space-lg flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase block mb-1 font-bold">Colección Florarte</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Caja Sombrerera Florarte</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Rosas y flores selectas de estudio</p>
+</div>
+<a class="w-10 h-10 rounded-full bg-secondary-fixed hover:bg-primary hover:text-white text-primary flex items-center justify-center transition-colors shrink-0" href="https://wa.me/526673504860?text=Hola,%20me%20interesa%20la%20Caja%20Sombrerera%20Florarte" rel="noopener noreferrer" target="_blank" title="Solicitar información">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Item 2: Ramo Silvestre en Papel Seda -->
+<div class="group rounded-2xl bg-surface-container-lowest overflow-hidden shadow-[0_4px_20px_rgba(140,0,62,0.06)] hover:shadow-[0_16px_36px_-10px_rgba(184,0,83,0.2)] transition-all duration-300 border border-outline-variant/40">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img alt="Ramo Silvestre en Papel Seda con gerberas y rosas rosadas" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlj7Rc-RbMTd76ineKUGqseFWnIltWbr5X6S2OIL0aRg8IykQGKkaDDhuRdaKQ4Hyiqa5F1KzJvFF-6XgtrA-kZ0Uvh7Q2jkHSEUD7pWg5iBRGCj5NPfkT5fBNQNgxXrWZtLXcECr_p9vEF9k6GBdMA6cBbNVOo-rkb-ApJyAd9EcuLxYibYUS8ZCY3Xfe-fTU1IL5tkS4g8UkFaokDuxAwhSiATWjvNhOBvrdk32qKbdLKSK6kU9-RrdT1NrFXD18KV0"/>
+<span class="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold shadow-sm">Tendencia Rosa</span>
+</div>
+<div class="p-space-lg flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase block mb-1 font-bold">Ramos de Mano</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Ramo Silvestre en Papel Seda</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Gerberas y rosas rosadas frescas</p>
+</div>
+<a class="w-10 h-10 rounded-full bg-secondary-fixed hover:bg-primary hover:text-white text-primary flex items-center justify-center transition-colors shrink-0" href="https://wa.me/526673504860?text=Hola,%20me%20interesa%20el%20Ramo%20Silvestre%20en%20Papel%20Seda" rel="noopener noreferrer" target="_blank" title="Solicitar información">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Item 3: Ramo Elegante con Rosas y Claveles -->
+<div class="group rounded-2xl bg-surface-container-lowest overflow-hidden shadow-[0_4px_20px_rgba(140,0,62,0.06)] hover:shadow-[0_16px_36px_-10px_rgba(184,0,83,0.2)] transition-all duration-300 border border-outline-variant/40">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img alt="Ramo Elegante con Rosas y Claveles en papel kraft y moño dorado" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJpz7WPxAsyGfV7y8ekXzpBduo6IKYyhzRPe2PckmpmMolfXM8UQwoxQhDnm8riD0iPKcXAjDDhSXuuwrxD8HHNCasn5k6XQS7dc9LWKbfao_SJmmkPU3OR6T61OOwwtHFDCXrbJQ_sqSmgAV_Q2atC6px-obPKyqAx1yIDviS3vYqDhzMPs22-OR4rydb_gpn_hfdjVzsE22VS6BwybhFr3AxdvZfuL_Vbao6LqskDdo6_REQt2j1AEUX15G9EG97dKk"/>
+<span class="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold shadow-sm">Edición Especial</span>
+</div>
+<div class="p-space-lg flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase block mb-1 font-bold">Regalos Festivos</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Ramo Elegante con Rosas y Claveles</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Papel kraft artesanal y moño dorado</p>
+</div>
+<a class="w-10 h-10 rounded-full bg-secondary-fixed hover:bg-primary hover:text-white text-primary flex items-center justify-center transition-colors shrink-0" href="https://wa.me/526673504860?text=Hola,%20me%20interesa%20el%20Ramo%20Elegante%20con%20Rosas%20y%20Claveles" rel="noopener noreferrer" target="_blank" title="Solicitar información">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Item 4: Ramo Noche Estrellada con Girasoles -->
+<div class="group rounded-2xl bg-surface-container-lowest overflow-hidden shadow-[0_4px_20px_rgba(140,0,62,0.06)] hover:shadow-[0_16px_36px_-10px_rgba(184,0,83,0.2)] transition-all duration-300 border border-outline-variant/40">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img alt="Ramo Noche Estrellada con Girasoles y pintura clásica" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCTrJdv31HZx3N4_elxV-kAHkqKscaFH5MQKbdYpedwzidTo_C97PSgqjirVZWmXE5HRCLR770W5L8gwI8hp0WrYy8UIiE0J8xVKsGGbxohN47IPNu3sSOVILGoKQ1rGAvlwTfTlCvCh4slbSCyJqtA_xigIX6DpKJcv2s7prIHQcNPqgnYSr3NvL7aL9D2hSCjJu9Djo6qa-ojRApT22Lg3vtWfFuIAaHUd_Ms3L02wcSfgYTjFXRWkWHqf-RgB-_TLs"/>
+<span class="absolute top-4 right-4 px-3.5 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-md font-label-sm text-label-sm text-primary uppercase tracking-wider font-bold shadow-sm">Diseño Temático</span>
+</div>
+<div class="p-space-lg flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase block mb-1 font-bold">Colección de Arte</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">Ramo Noche Estrellada con Girasoles</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Diseño temático inspirado en el arte</p>
+</div>
+<a class="w-10 h-10 rounded-full bg-secondary-fixed hover:bg-primary hover:text-white text-primary flex items-center justify-center transition-colors shrink-0" href="https://wa.me/526673504860?text=Hola,%20me%20interesa%20el%20Ramo%20Noche%20Estrellada" rel="noopener noreferrer" target="_blank" title="Solicitar información">
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 4: RESEÑAS VERIFICADAS (Google Reviews) -->
+<section class="w-full py-space-xl bg-surface-container-low" id="resenas">
+<div class="max-w-[1280px] mx-auto px-gutter">
+<div class="text-center max-w-xl mx-auto mb-space-xl space-y-2">
+<div class="inline-flex items-center gap-1.5 px-4 py-1 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm mb-2">
+<span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md text-primary font-bold">Google Reviews ★ 5.0 · 85 opiniones</span>
+</div>
+<div class="flex items-center justify-center gap-1 text-amber-500">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Opiniones de Nuestros Clientes</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg max-w-4xl mx-auto">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-xl rounded-2xl shadow-[0_8px_24px_rgba(140,0,62,0.05)] border border-outline-variant/40 flex flex-col justify-between space-y-6">
+<div class="space-y-4">
+<div class="flex text-amber-500">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface italic leading-relaxed">
+              "¡El arreglo floral era hermoso, me encantó! Además el servicio fue excelente; fueron muy amables y pacientes con mi pedido."
+            </p>
+</div>
+<div class="pt-4 flex items-center gap-3 border-t border-surface-container">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-primary text-sm">
+              G
+            </div>
+<div>
+<p class="font-title-md text-[15px] font-semibold text-on-surface">Cliente en Google</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">— Opinión de cliente verificado en Google</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-xl rounded-2xl shadow-[0_8px_24px_rgba(140,0,62,0.05)] border border-outline-variant/40 flex flex-col justify-between space-y-6">
+<div class="space-y-4">
+<div class="flex text-amber-500">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface italic leading-relaxed">
+              "Excelente calidad y muy confiables. Si quieres hacer un pedido a distancia, son muy formales tanto en tiempo como en calidad."
+            </p>
+</div>
+<div class="pt-4 flex items-center gap-3 border-t border-surface-container">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-primary text-sm">
+              G
+            </div>
+<div>
+<p class="font-title-md text-[15px] font-semibold text-on-surface">Cliente en Google</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">— Opinión de cliente verificado en Google</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 5: HORARIOS DE ATENCIÓN -->
+<section class="w-full py-space-xl bg-surface" id="horario">
+<div class="max-w-[1280px] mx-auto px-gutter">
+<div class="max-w-2xl mx-auto bg-surface-container-lowest p-space-xl rounded-3xl shadow-[0_12px_32px_-8px_rgba(140,0,62,0.1)] border border-outline-variant/40">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-space-lg">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] font-bold">Disponibilidad</span>
+<h2 class="font-headline-md text-headline-md text-primary mt-1">Horarios de Atención</h2>
+</div>
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-fixed text-primary w-fit font-label-md text-label-md font-bold border border-outline-variant/40">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="">Abierto en horario habitual</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-low font-body-md text-body-md border border-outline-variant/30">
+<span class="font-medium text-on-surface">Lunes a Jueves</span>
+<span class="text-primary font-bold">9:00 - 19:00 hrs</span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-low font-body-md text-body-md border border-outline-variant/30">
+<span class="font-medium text-on-surface">Viernes</span>
+<span class="text-primary font-bold">9:00 - 19:30 hrs</span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-low font-body-md text-body-md border border-outline-variant/30">
+<span class="font-medium text-on-surface">Sábado</span>
+<span class="text-primary font-bold">10:00 - 16:00 hrs</span>
+</div>
+<div class="flex items-center justify-between p-3.5 rounded-xl bg-surface-container-low font-body-md text-body-md opacity-75 border border-outline-variant/20">
+<span class="font-medium text-on-surface">Domingo</span>
+<span class="text-secondary font-semibold">Cerrado</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-center mt-6">
+          * Para eventos especiales y pedidos anticipados, contáctanos directamente con tiempo por WhatsApp.
+        </p>
+</div>
+</div>
+</section>
+<!-- SECCIÓN 6: UBICACIÓN & CONTACTO -->
+<section class="w-full py-space-xl bg-surface-container-low" id="ubicacion">
+<div class="max-w-[1280px] mx-auto px-gutter">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Izquierda: Datos y botones de acción -->
+<div class="lg:col-span-6 space-y-space-lg">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em] font-bold">Encuéntranos</span>
+<h2 class="font-headline-lg text-headline-lg text-primary mt-1">Ubicación &amp; Contacto</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Visita nuestro atelier botánico o realiza tu pedido a domicilio para Culiacán y sus alrededores.</p>
+</div>
+<div class="space-y-4">
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-lowest shadow-sm border border-outline-variant/40">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[24px]">location_on</span>
+</div>
+<div>
+<h4 class="font-title-md text-[16px] text-on-surface font-semibold">Dirección</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Del Nogal s/n, Aguaruto, Culiacán, Sinaloa</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-surface-container-lowest shadow-sm border border-outline-variant/40">
+<div class="w-12 h-12 rounded-xl bg-secondary-fixed flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[24px]">call</span>
+</div>
+<div>
+<h4 class="font-title-md text-[16px] text-on-surface font-semibold">Teléfono Directo</h4>
+<a class="font-body-md text-body-md text-primary font-semibold hover:underline block mt-0.5" href="tel:6673504860">667 350 4860</a>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md pt-2">
+<a class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-primary text-on-primary hover:bg-primary-container transition-all font-label-lg text-label-lg shadow-sm" href="https://maps.google.com/?q=Del+Nogal+Aguaruto+Culiacan+Sinaloa" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">directions</span>
+<span class="">Cómo llegar</span>
+</a>
+<a class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-primary border border-outline-variant/50 transition-colors font-label-lg text-label-lg shadow-sm" href="https://wa.me/526673504860" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span class="">Mensaje directo WhatsApp</span>
+</a>
+</div>
+</div>
+<!-- Derecha: Vista previa de mapa estilizado -->
+<div class="lg:col-span-6">
+<div class="w-full h-96 lg:h-[420px] rounded-3xl shadow-[0_16px_36px_-8px_rgba(140,0,62,0.12)] overflow-hidden relative bg-surface-container flex items-end p-6 border border-outline-variant/40" data-location="Aguaruto, Culiacan, Sinaloa" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZmfQh6Fe7iujMNHVDTBFrdftUxO-9pleduA1Ml_9TJhRID6c3_RM7jQsze5Qv3X1SVa56vk3PfWCwnshcAVyJJeZ8wrUPivRzF4NUJTYL-oKFv104MkuOQ8dnSR9bHgYy7NBTK3k2nr91LeqWNZKYBcAcFa7YQRt-omImXTIscNUjwzOmy3i3pgAmYGRXsQ-Qe3Kdp2pDGHwLEoG1pYwY-zfP4GVAn9jm0Jiinw5fe-fxJK7Y35uJEQ')">
+<div class="bg-surface-container-lowest/95 backdrop-blur-md p-4 rounded-2xl shadow-lg flex items-center gap-3.5 max-w-sm border border-outline-variant/40">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">pin_drop</span>
+</div>
+<div>
+<p class="font-title-md text-[14px] font-bold text-primary">Florarte Boutique</p>
+<p class="font-body-sm text-[12px] text-on-surface-variant">Del Nogal s/n, Aguaruto, Sinaloa</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Botón Flotante Verde de WhatsApp (Esquina Inferior Derecha) -->
+<a aria-label="Contactar por WhatsApp" class="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-5 py-3.5 rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(37,211,102,0.45)] hover:bg-[#1ebe5d] hover:scale-105 transition-all duration-300 group" href="https://wa.me/526673504860" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+<span class="font-label-lg text-label-lg font-bold">WhatsApp Directo</span>
+</a>
+</div>
+<script>
+  // Smooth scroll para los anclajes de navegación
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+</script></main><footer class="w-full bg-surface-container-low mt-space-xl pt-space-xl pb-space-lg border-t border-outline-variant/30"><div class="max-w-[1280px] mx-auto px-gutter"><div class="grid grid-cols-1 md:grid-cols-4 gap-space-xl pb-space-xl"><div class="space-y-space-sm"><div class="flex items-center gap-space-sm"><img alt="Florarte Estudio Floral Logo" class="h-12 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBD7xQNxZ3JFaiO1rzM-tx7xefq9tOMy_eeo8WMViJN_a0SbdOb3PhKI9rMKA5Gwxip0MLho_gpebMb-aS-IB9uX50J2LgPVYgTnEomlyphBQNUaW9hUhk3dgg9fp_r2_9e8Wbyh8ZJIwaVcZiRw_6yEeF9kHZc9JZyU8w217nLzxJr6PPlh-GdrZazGkiKh0MJCWaZGssGltEob-5X2at4CU2MnQmRsmUjX5Y_5YjW99pMB59m7gtLsM-9TYsYsmJ2Nc0"/></div><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Atelier botánico de diseño floral bespoke en Sinaloa. Creaciones que celebran momentos inolvidables con frescura y elegancia serena.</p><div class="flex items-center gap-1.5 pt-space-xs text-primary font-label-sm text-label-sm"><span class="material-symbols-outlined text-[16px] text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span><span class="font-bold">Calificación de excelencia 5.0 Google</span></div></div><div class="space-y-space-sm"><span class="font-title-md text-[16px] text-primary font-bold block">Contacto Directo</span><div class="space-y-2"><a class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="tel:6673504860"><span class="material-symbols-outlined text-[18px] text-primary">call</span><span class="font-medium">667 350 4860</span></a><a class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" href="https://wa.me/526673504860" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-[18px] text-primary">chat</span><span class="">WhatsApp Atención Inmediata</span></a></div></div><div class="space-y-space-sm"><span class="font-title-md text-[16px] text-primary font-bold block">Boutique &amp; Ubicación</span><div class="space-y-2 font-body-sm text-body-sm text-on-surface-variant"><div class="flex items-start gap-2"><span class="material-symbols-outlined text-[18px] text-primary mt-0.5">location_on</span><span class="">Del Nogal s/n, Aguaruto, Culiacán, Sinaloa</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-primary">local_shipping</span><span class="">Envíos a Culiacán y zonas aledañas</span></div></div></div><div class="space-y-space-sm"><span class="font-title-md text-[16px] text-primary font-bold block">Horarios de Atención</span><div class="space-y-1.5 font-body-sm text-body-sm text-on-surface-variant"><div class="flex justify-between"><span class="">Lunes a Sábado:</span><span class="font-medium text-on-surface">8:00 AM - 7:00 PM</span></div><div class="flex justify-between"><span class="">Domingos:</span><span class="font-medium text-on-surface">9:00 AM - 3:00 PM</span></div><div class="pt-space-xs font-label-sm text-label-sm text-primary font-semibold">Entregas programadas en fecha especial</div></div></div></div><div class="pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-sm text-on-surface-variant font-label-md text-label-md border-t border-outline-variant/30"><p class="">© 2025 Florarte Florería Boutique. Todos los derechos reservados.</p><p class="font-headline-sm text-[14px] italic text-primary">Arte Botánico &amp; Emoción Floral</p></div></div></footer>
+
+</div>
+<div class="site-mobile bg-surface font-body-md text-on-surface antialiased flex flex-col min-h-screen">
+<main class="flex-1 w-full bg-surface pt-safe pb-safe"><div class="flex flex-col w-full text-on-surface">
+<!-- TOP BRANDING & SOCIAL PROOF -->
+<header class="px-5 pt-4 pb-4 flex flex-col items-center text-center">
+<div class="w-48 mb-3 flex items-center justify-center">
+<img alt="Florarte Estudio Floral" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc6-wPOwcTADFGLbMaGPm_wA-TJpq3751IhxvZcYPDttpTOrOLekoqdyIqTr0sv-OA6ornEK74_s2n_x_fJ1nrxEQiYz5g__svIfzk5d9dd3NJsIYGxazgxjlEfC-jXdCa8ti_UIiGSmmxuTkS0FNxmhZQ7i0ZiQ2HkVG6v1M8hNc_uK4GDYTuJLpjwfUCZf90OhdBXZlIWigBQbirj6RoRHwLuXzUUk0qhH4IFv-k3aJh9Xi6ugQQvumvxHyHDrhlb4c">
+</div>
+<!-- Google Badge -->
+<a class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container shadow-sm border border-outline-variant/40" href="https://maps.google.com/?q=Del+Nogal+Aguaruto+Culiacan" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[15px] text-[#e0a823]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">5.0</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(85 reseñas en Google)</span>
+</a>
+</header>
+<!-- HERO SECTION -->
+<section class="px-5 pb-8 flex flex-col items-center text-center">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight max-w-xs mb-4">
+      Arte floral que despierta emociones
+    </h1>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-primary-container text-on-primary font-title-sm text-title-sm shadow-md transition-transform active:scale-95 mb-6 hover:bg-primary" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20gustar%C3%ADa%20hacer%20un%20pedido." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg">chat</span>
+<span class="">Pedir por WhatsApp</span>
+</a>
+<!-- Large Refined Hero Image Card -->
+<div class="w-full rounded-xl overflow-hidden shadow-sm bg-surface-container-lowest border border-outline-variant/30">
+<img alt="Caja Sombrerera Rosa Florarte Estudio Floral" class="w-full aspect-[4/5] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBX8e-ws7rmgNgb1YXOfTHSvWeMuGDetDc2Gy0aJ77qcUqYoAlcdeu23glUr_7TpagaYcmDxlmRS00A8AIMTrO85kVErZr8OJqm-rZQqvfJjfCvviwcilPVwzcsBuLhcKFYr0als45FSGvCGnrgUqe680tsiQIEGFr-lT56U6Xok4cO03IIep_rUfwvGgSIVp2vHeUMSbYIYdwD-ZD9c5ACNcg58CBgEzb3b8NZaGs8S7MQQKZyNgfLcxLYsqZ7a1OZEx0">
+</div>
+</section>
+<!-- ABOUT US (STRICT 2 LINES) -->
+<section class="px-6 py-8 text-center bg-surface-container-low border-y border-outline-variant/30">
+<span class="font-label-md text-label-md uppercase text-primary font-bold tracking-widest block mb-2">
+      SOBRE NOSOTROS
+    </span>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed max-w-sm mx-auto">
+      Diseñamos arreglos florales artesanales y exclusivos en Culiacán, cuidando cada detalle con flores frescas seleccionadas para crear momentos inolvidables.
+    </p>
+<div class="mt-6 w-full flex justify-center"><a class="w-full max-w-sm py-3 px-5 rounded-full bg-surface-container-lowest text-primary font-title-sm text-title-sm text-center flex items-center justify-center gap-2 border border-outline-variant/40 shadow-sm transition-transform active:scale-95 hover:bg-surface-container" href="https://maps.google.com/?q=Del+Nogal+Aguaruto+Culiacan" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-base text-[#e0a823]" style="font-variation-settings: 'FILL' 1;">rate_review</span><span class="">Escribir reseña en Google</span></a></div></section>
+<!-- FLORAL COLLECTION GALLERY -->
+<section class="px-5 py-10 flex flex-col">
+<div class="text-center mb-7">
+<h2 class="font-headline-md text-headline-md text-primary mb-1">
+        Nuestra Colección Floral
+      </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Creaciones florales únicas elaboradas a mano
+      </p>
+</div>
+<!-- Large photo card feed -->
+<div class="flex flex-col gap-6">
+<!-- Card 1 -->
+<article class="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm border border-outline-variant/30">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-low">
+<img alt="Caja Sombrerera Florarte con rosas y flores de autor" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDFDg5g22GSH9QAkYhZEj4bR3UQlILkAZOdC3d75ablP--ci54UrjBCzAgiZAneZjyQB93jUq-kayWEMek27pfOdkXi_kBGELlJ2DMOkvNns8aAABsK1bb-ttsBL85ftVNxTVFUsN-gQfcoY6hGUvx5gbRd0G7K11c97Gif3IjPJE2CI_wby9Swo0dprj-PGet1R3Qd9BpW2A3jSnQWxQO3trLbIWVF9813Ej0MOSzXqcCbP14ylborKHAm-2RsS-ftw0">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-sm font-label-sm text-label-sm text-primary uppercase font-bold shadow-sm">
+            Diseño de Autor
+          </span>
+</div>
+<div class="p-4 flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary">Caja Sombrerera Florarte</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary-container font-semibold" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20interesa%20consultar%20disponibilidad%20de%20la%20Caja%20Sombrerera." rel="noopener noreferrer" target="_blank">
+<span class="">Consultar</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm border border-outline-variant/30">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-low">
+<img alt="Ramo Silvestre en Papel Seda" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn03UCcumDlEuIsiI20PzX_xxrmPv_MsfCGPRCKZogmKojb7_0nrlyd1-0LevOCt4UlmZWQ7EaRJVSr1XT1SzFd9qAszS2OmLYkOs2GDdtwuPfVvLOxNdf501gfwlgeIbMwEkc4eNpb9yLE2oqzIbVFeEXCEr-65X8tR3B88tlr8_5SAClGg1inYCksbmUJ92OP96tZFdSrd9V7rke19YQNE7Wt5UmRH0jPCL2vk9GktoAGQUIomceRcQ305KhaWEu2Ag">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-sm font-label-sm text-label-sm text-primary uppercase font-bold shadow-sm">
+            Composición Silvestre
+          </span>
+</div>
+<div class="p-4 flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary">Ramo Silvestre en Papel Seda</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary-container font-semibold" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20interesa%20consultar%20disponibilidad%20del%20Ramo%20Silvestre%20en%20Papel%20Seda." rel="noopener noreferrer" target="_blank">
+<span class="">Consultar</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm border border-outline-variant/30">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-low">
+<img alt="Ramo Clásico Kraft con rosas rojas y claveles" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE3c7FNuyDgAqmtP9VDg_bVz5dNJ8bRz0z1GTdJHq44qYw6VdNgjYiod0ecXLONqYLU3lsgWgZyG3lEUst8_brploDHrvSUJPbE9S7ICDI_cf5aO06GBAToH_9l7Dm0ZBkfx54fo02cwRJMiI_VQadncqyLMKlJbTf2VjLSfwlu22rZXQfw2hefa_RFPP3oEXr9tebASjssJNEW95oZlKUMvYCjY1552X1dBVaTgdMoHL8FjCywXxHNOEIIn_lP2-OvKk">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-sm font-label-sm text-label-sm text-primary uppercase font-bold shadow-sm">
+            Ramo Clásico
+          </span>
+</div>
+<div class="p-4 flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary">Ramo Clásico Kraft</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary-container font-semibold" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20interesa%20el%20Ramo%20Cl%C3%A1sico%20Kraft." rel="noopener noreferrer" target="_blank">
+<span class="">Consultar</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="flex flex-col rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm border border-outline-variant/30">
+<div class="relative w-full aspect-[4/5] overflow-hidden bg-surface-container-low">
+<img alt="Ramo Noche Estrellada con girasoles y follaje azul" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ6FE3Yee8i9j94NisEwBJH_sXwwh8M4txbOPrPg3StuGCs1teuHEM5BDW_nPv4wyqvVFsIX4sEPVvPsim0TKQ-VMGSdVTscwqfljsOGQkZK0N_pcqkINz2CfhTMP_CfC0aKqOEgQ-C21uXTF6ORVabai1BRqGX2z8BOHo_BSKmHTh-AQ98PXMmq3zyYF_WkeSV9s1stqUKY9didrjuWCsaCjdfESlm7l0u_SWOWaJlFG185jA014yKK27ovSPMhhcUVA">
+<span class="absolute top-3.5 right-3.5 px-3 py-1 rounded-full bg-surface-container-lowest/95 backdrop-blur-sm font-label-sm text-label-sm text-primary uppercase font-bold shadow-sm">
+            Edición Especial
+          </span>
+</div>
+<div class="p-4 flex items-center justify-between">
+<span class="font-title-sm text-title-sm text-primary">Ramo Noche Estrellada</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary-container font-semibold" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20gustar%C3%ADa%20consultar%20por%20el%20Ramo%20Noche%20Estrellada." rel="noopener noreferrer" target="_blank">
+<span class="">Consultar</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- WhatsApp CTA Button below collection -->
+<div class="mt-8 flex justify-center">
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-secondary-container text-primary font-title-sm text-title-sm shadow-sm transition-transform active:scale-95 border border-outline-variant/40" href="https://wa.me/526673504860?text=Hola%20Florarte,%20quisiera%20consultar%20la%20disponibilidad%20de%20arreglos%20florales." rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-lg text-primary">forum</span>
+<span class="">Consultar disponibilidad por WhatsApp</span>
+</a>
+</div>
+</section>
+<!-- GOOGLE REVIEWS SECTION -->
+<section class="px-5 py-10 bg-surface-container-low flex flex-col items-center border-y border-outline-variant/30">
+<!-- Verified Badge Header -->
+<div class="flex flex-col items-center text-center mb-6">
+<div class="flex items-center gap-1 text-[#e0a823] mb-1.5">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-primary mb-0.5">
+        Calificación 5.0 basada en 85 opiniones en Google
+      </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        La confianza y alegría de nuestros clientes en Culiacán
+      </p>
+</div>
+<div class="flex flex-col gap-4 w-full">
+<!-- Review 1 -->
+<article class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col border border-outline-variant/30">
+<div class="flex items-center gap-1 text-[#e0a823] mb-3">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic mb-4 leading-relaxed">“¡El arreglo floral quedó hermoso, me encantó! Y el servicio también fue excelente; fueron muy amables y pacientes con mi pedido.”</p>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-md text-label-md text-primary font-semibold">Cliente Verificado Google</span>
+<span class="material-symbols-outlined text-base text-primary">verified</span>
+</div>
+</article>
+<!-- Review 2 -->
+<article class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col border border-outline-variant/30">
+<div class="flex items-center gap-1 text-[#e0a823] mb-3">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface italic mb-4 leading-relaxed">“Excelente calidad, muy confiables. Si buscas hacer un pedido a distancia, son sumamente puntuales y cuidadosos con la calidad.”</p>
+<div class="flex items-center justify-between pt-2">
+<span class="font-label-md text-label-md text-primary font-semibold">Cliente Verificado Google</span>
+<span class="material-symbols-outlined text-base text-primary">verified</span>
+</div>
+</article>
+</div>
+<div class="mt-6 w-full flex justify-center"><a class="w-full max-w-sm py-3 px-5 rounded-full bg-surface-container-lowest text-primary font-title-sm text-title-sm text-center flex items-center justify-center gap-2 border border-outline-variant/40 shadow-sm transition-transform active:scale-95 hover:bg-surface-container" href="https://maps.google.com/?q=Del+Nogal+Aguaruto+Culiacan" rel="noopener noreferrer" target="_blank"><span class="material-symbols-outlined text-base text-[#e0a823]" style="font-variation-settings: 'FILL' 1;">rate_review</span><span class="">Escribir reseña en Google</span></a></div></section>
+<!-- STORE HOURS -->
+<section class="px-5 py-10 flex flex-col">
+<div class="text-center mb-6">
+<span class="font-label-md text-label-md uppercase text-primary font-bold tracking-widest block mb-1">
+        ATENCIÓN EN TALLER
+      </span>
+<h2 class="font-headline-md text-headline-md text-primary">
+        Horario de Atención
+      </h2>
+</div>
+<div class="p-5 rounded-xl bg-surface-container-lowest shadow-sm flex flex-col gap-3 border border-outline-variant/30">
+<!-- Status pill -->
+<div class="flex items-center justify-between pb-3 mb-1 border-b border-outline-variant/20">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+<span class="font-label-md text-label-md text-primary uppercase font-bold">Abierto hoy</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Zona Horaria Culiacán</span>
+</div>
+<!-- Schedule rows -->
+<div class="flex justify-between items-center py-1.5 font-body-md text-body-md">
+<span class="text-on-surface font-medium">Lunes a Jueves</span>
+<span class="text-on-surface-variant font-mono">9:00 - 19:00</span>
+</div>
+<div class="flex justify-between items-center py-1.5 font-body-md text-body-md">
+<span class="text-on-surface font-medium">Viernes</span>
+<span class="text-on-surface-variant font-mono">9:00 - 19:30</span>
+</div>
+<div class="flex justify-between items-center py-1.5 font-body-md text-body-md">
+<span class="text-on-surface font-medium">Sábado</span>
+<span class="text-on-surface-variant font-mono">10:00 - 16:00</span>
+</div>
+<div class="flex justify-between items-center py-1.5 font-body-md text-body-md">
+<span class="text-on-surface-variant">Domingo</span>
+<span class="text-error font-medium">Cerrado</span>
+</div>
+</div>
+</section>
+<!-- LOCATION & CONTACT -->
+<section class="px-5 pb-16 flex flex-col">
+<div class="text-center mb-6">
+<span class="font-label-md text-label-md uppercase text-primary font-bold tracking-widest block mb-1">
+        VISÍTANOS EN FLORARTE
+      </span>
+<h2 class="font-headline-md text-headline-md text-primary">
+        Ubicación &amp; Contacto
+      </h2>
+</div>
+<!-- Map & Location Card -->
+<div class="rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm flex flex-col border border-outline-variant/30">
+<!-- Interactive Static Map API Anchor Container -->
+<div class="w-full h-44 bg-cover bg-center relative" data-location="Del Nogal, Aguaruto, Culiacan, Sinaloa, Mexico" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAO6QMYsrlHHIerkP-XfHgv9qSX_QNlFcmRFhK2JoL7hDHez6n6cipOHAUCsNmHriK1xqEiXUkFxj7EYFA_p08bz1WM8dxZzsH8je5f7YlKP0lR_-74-Mei-_YaMt3AzS5DWrouYZAT3tb79iTmkCr0KpEuIPHFyvn_y8Ox5WCjwo5m5pSQDJtjPN8D_ZfwiET1LG5HcYpZFqiiSsHiLeFa6jz9iXBq0GCVfoTHvnkxKwG5QfcKW_32Rg')">
+<div class="absolute inset-0 bg-primary/10 flex items-center justify-center">
+<div class="p-3 rounded-full bg-surface shadow-md flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+</div>
+</div>
+<div class="p-5 flex flex-col gap-4">
+<div>
+<span class="font-label-sm text-label-sm uppercase text-outline tracking-wider block mb-1 font-bold">
+            Dirección del Taller
+          </span>
+<p class="font-title-sm text-title-sm text-primary">
+            Del Nogal s/n, Aguaruto, Culiacán, Sinaloa
+          </p>
+</div>
+<div class="flex flex-col gap-2 pt-1">
+<!-- How to get there button -->
+<a class="w-full py-3 rounded-full bg-primary-container text-on-primary font-title-sm text-title-sm text-center flex items-center justify-center gap-2 shadow-sm transition-transform active:scale-98 hover:bg-primary" href="https://maps.google.com/?q=Del+Nogal+s/n,+Aguaruto,+Culiacan" rel="noopener noreferrer" target="_blank">
+<span class="material-symbols-outlined text-base">directions</span>
+<span class="">Cómo llegar</span>
+</a>
+<!-- Direct phone contact -->
+<a class="w-full py-3 rounded-full bg-surface-container text-primary font-title-sm text-title-sm text-center flex items-center justify-center gap-2 transition-transform active:scale-98 border border-outline-variant/40" href="tel:6673504860">
+<span class="material-symbols-outlined text-base">phone</span>
+<span class="">Llamar: 667 350 4860</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Editorial Footer Note -->
+<div class="mt-12 text-center text-on-surface-variant font-body-sm text-body-sm flex flex-col items-center gap-2">
+<div class="w-36 flex items-center justify-center mb-1">
+<img alt="Florarte Estudio Floral" class="w-full h-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxjQ3NnyUZ-7WbMeaQ61uWuWKLy-XzjLI7T5MMoGMYxEY8qF_fAxI8rt4gvTqTYXmDTyLXvUGAd4e0s5M-OpbVO7HUojDVh_yOQFlGSEEcTYvcd1ZPO9RTCQlTrWRuN-v7d_0K0mZLh3j_w3Nm2v1X0bDhJY97sFgSCp1hUZXZ4qJlKizRSs1OW2aofJIKFlCuVRllCoQxUxTT4dHnQoLgiAuHvOhTwY3Aoo9_dYJLvj2ImYGHUkVNGnYeOtr_J0qIaBU">
+</div>
+<p class="">Florería boutique con envíos en Culiacán y Aguaruto</p>
+<p class="font-label-sm text-label-sm text-outline mt-1">© Florarte Estudio Floral. Todos los derechos reservados.</p>
+</div>
+</section>
+<!-- PERMANENT FLOATING WHATSAPP BUTTON (BOTTOM-RIGHT) -->
+<div class="fixed bottom-6 right-5 z-40">
+<a aria-label="Pedir por WhatsApp a Florarte" class="flex items-center gap-2 px-4 py-3 rounded-full bg-primary-container text-on-primary shadow-xl transition-transform active:scale-90 hover:bg-primary" href="https://wa.me/526673504860?text=Hola%20Florarte,%20me%20gustar%C3%ADa%20hacer%20un%20pedido." rel="noopener noreferrer" style="box-shadow: 0 8px 24px -4px rgba(184, 0, 83, 0.45);" target="_blank">
+<span class="material-symbols-outlined text-xl">chat</span>
+<span class="font-title-sm text-title-sm pr-1">WhatsApp</span>
+</a>
+</div>
+</div></main>
+
+
+</div>
+</body>
+</html>
